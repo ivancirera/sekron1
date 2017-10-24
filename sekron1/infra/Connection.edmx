@@ -1,0 +1,1090 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="dbSekronModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="tb_anexo">
+          <Key>
+            <PropertyRef Name="codAnexo" />
+          </Key>
+          <Property Name="codAnexo" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="codTipoAnexo" Type="bigint" Nullable="false" />
+          <Property Name="codOcorrencia" Type="bigint" Nullable="false" />
+          <Property Name="anexo" Type="varchar(max)" Nullable="false" />
+          <Property Name="tipoAnexo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="data" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="hora" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_cartao">
+          <Key>
+            <PropertyRef Name="codCartao" />
+          </Key>
+          <Property Name="codCartao" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="codUsuario" Type="bigint" Nullable="false" />
+          <Property Name="numeroCartao" Type="varchar" MaxLength="50" />
+          <Property Name="validade" Type="varchar" MaxLength="7" />
+          <Property Name="codSeguranca" Type="varchar" MaxLength="10" />
+          <Property Name="bandeira" Type="varchar" MaxLength="100" />
+          <Property Name="cep" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="tb_contato">
+          <Key>
+            <PropertyRef Name="codContato" />
+          </Key>
+          <Property Name="codContato" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="codUsuario" Type="bigint" Nullable="false" />
+          <Property Name="nome" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="telefone" Type="varchar" MaxLength="11" />
+        </EntityType>
+        <EntityType Name="tb_emedica">
+          <Key>
+            <PropertyRef Name="codEmedica" />
+          </Key>
+          <Property Name="codEmedica" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="codUsuario" Type="bigint" Nullable="false" />
+          <Property Name="cartaoSus" Type="varchar" MaxLength="200" />
+          <Property Name="planoSaude" Type="varchar" MaxLength="200" />
+          <Property Name="numeroPlanoSaude" Type="varchar" MaxLength="200" />
+          <Property Name="problemaSaude" Type="varchar" MaxLength="200" />
+          <Property Name="notasMedicas" Type="varchar" MaxLength="200" />
+          <Property Name="alergiasReacoes" Type="varchar" MaxLength="200" />
+          <Property Name="medicamentos" Type="varchar" MaxLength="200" />
+          <Property Name="tipoSanguineo" Type="varchar" MaxLength="10" />
+          <Property Name="peso" Type="varchar" MaxLength="50" />
+          <Property Name="altura" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tb_login">
+          <Key>
+            <PropertyRef Name="codLogin" />
+          </Key>
+          <Property Name="codLogin" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="senha" Type="nchar" MaxLength="15" Nullable="false" />
+          <Property Name="token" Type="nchar" MaxLength="6" Nullable="false" />
+          <Property Name="serialChip" Type="varchar" MaxLength="250" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_mativo">
+          <Key>
+            <PropertyRef Name="codContato" />
+          </Key>
+          <Property Name="codContato" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="codUsuario" Type="bigint" Nullable="false" />
+          <Property Name="nome" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="telefone" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_ocorrencia">
+          <Key>
+            <PropertyRef Name="codOcorrencia" />
+          </Key>
+          <Property Name="codOcorrencia" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="codTipoOcorrencia" Type="bigint" Nullable="false" />
+          <Property Name="codUsuario" Type="bigint" Nullable="false" />
+          <Property Name="latitude" Type="float" Nullable="false" />
+          <Property Name="longitude" Type="float" Nullable="false" />
+          <Property Name="descricaoOcorrencia" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="data" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="hora" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="enderecoOcorrencia" Type="varchar" MaxLength="250" />
+          <Property Name="placaVeiculo" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="tb_redefinirsenha">
+          <Key>
+            <PropertyRef Name="codRedefinir" />
+          </Key>
+          <Property Name="codRedefinir" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="senhaProvisoria" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_servico">
+          <Key>
+            <PropertyRef Name="codServico" />
+          </Key>
+          <Property Name="codServico" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="codUsuario" Type="bigint" Nullable="false" />
+          <Property Name="nome" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="descricao" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="data" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="dataValidade" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="valor" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_subocorrencia">
+          <Key>
+            <PropertyRef Name="codSubocorrencia" />
+          </Key>
+          <Property Name="codSubocorrencia" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="codTipoocorrencia" Type="bigint" Nullable="false" />
+          <Property Name="descricao" Type="varchar" MaxLength="250" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_tipoanexo">
+          <Key>
+            <PropertyRef Name="codTipoAnexo" />
+          </Key>
+          <Property Name="codTipoAnexo" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descricao" Type="varchar" MaxLength="250" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_tipoocorrencia">
+          <Key>
+            <PropertyRef Name="codTipoOcorrencia" />
+          </Key>
+          <Property Name="codTipoOcorrencia" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descricao" Type="varchar" MaxLength="250" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_transacao">
+          <Key>
+            <PropertyRef Name="codTransacao" />
+          </Key>
+          <Property Name="codTransacao" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="codCartao" Type="bigint" Nullable="false" />
+          <Property Name="dataTransacao" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="status" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="codServico" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_usuario">
+          <Key>
+            <PropertyRef Name="codUsuario" />
+          </Key>
+          <Property Name="codUsuario" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="codLogin" Type="bigint" Nullable="false" />
+          <Property Name="nome" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="dataNascimento" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="cpf" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="rg" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="celular" Type="varchar" MaxLength="14" Nullable="false" />
+          <Property Name="telefone" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="sexo" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="cep" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="rua" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="complemento" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="numero" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="cidade" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="estado" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="ativo" Type="bit" Nullable="false" />
+          <Property Name="dataCadastro" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="pago" Type="bit" Nullable="false" />
+          <Property Name="voluntario" Type="varchar" MaxLength="150" />
+          <Property Name="fotoPerfil" Type="varchar(max)" />
+          <Property Name="uidFirebase" Type="varchar(max)" />
+          <Property Name="notificacaoAmarela" Type="bit" />
+          <Property Name="notificacaoLaranja" Type="bit" />
+          <Property Name="notificacaoVermelha" Type="bit" />
+          <Property Name="enderecoCasa" Type="varchar" MaxLength="250" />
+          <Property Name="enderecoTrabalho" Type="varchar" MaxLength="250" />
+          <Property Name="carroMarca" Type="varchar" MaxLength="250" />
+          <Property Name="carroModelo" Type="varchar" MaxLength="250" />
+          <Property Name="carroPlaca" Type="varchar" MaxLength="250" />
+          <Property Name="carroFoto" Type="varchar" MaxLength="250" />
+          <Property Name="carroCor" Type="varchar" MaxLength="250" />
+          <Property Name="cepTrabalho" Type="varchar" MaxLength="15" />
+          <Property Name="cepCasa" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <Association Name="FK_tb_anexo_tb_ocorrencia">
+          <End Role="tb_ocorrencia" Type="Self.tb_ocorrencia" Multiplicity="1" />
+          <End Role="tb_anexo" Type="Self.tb_anexo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_ocorrencia">
+              <PropertyRef Name="codOcorrencia" />
+            </Principal>
+            <Dependent Role="tb_anexo">
+              <PropertyRef Name="codOcorrencia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_anexo_tb_tipoanexo">
+          <End Role="tb_tipoanexo" Type="Self.tb_tipoanexo" Multiplicity="1" />
+          <End Role="tb_anexo" Type="Self.tb_anexo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_tipoanexo">
+              <PropertyRef Name="codTipoAnexo" />
+            </Principal>
+            <Dependent Role="tb_anexo">
+              <PropertyRef Name="codTipoAnexo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_cartao_tb_usuario">
+          <End Role="tb_usuario" Type="Self.tb_usuario" Multiplicity="1" />
+          <End Role="tb_cartao" Type="Self.tb_cartao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_usuario">
+              <PropertyRef Name="codUsuario" />
+            </Principal>
+            <Dependent Role="tb_cartao">
+              <PropertyRef Name="codUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_contato_ToTable">
+          <End Role="tb_usuario" Type="Self.tb_usuario" Multiplicity="1" />
+          <End Role="tb_contato" Type="Self.tb_contato" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_usuario">
+              <PropertyRef Name="codUsuario" />
+            </Principal>
+            <Dependent Role="tb_contato">
+              <PropertyRef Name="codUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_emedica_tb_usuario">
+          <End Role="tb_usuario" Type="Self.tb_usuario" Multiplicity="1" />
+          <End Role="tb_emedica" Type="Self.tb_emedica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_usuario">
+              <PropertyRef Name="codUsuario" />
+            </Principal>
+            <Dependent Role="tb_emedica">
+              <PropertyRef Name="codUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_mativo_tb_usuario">
+          <End Role="tb_usuario" Type="Self.tb_usuario" Multiplicity="1" />
+          <End Role="tb_mativo" Type="Self.tb_mativo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_usuario">
+              <PropertyRef Name="codUsuario" />
+            </Principal>
+            <Dependent Role="tb_mativo">
+              <PropertyRef Name="codUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_ocorrencia_tb_tipoocorrencia">
+          <End Role="tb_tipoocorrencia" Type="Self.tb_tipoocorrencia" Multiplicity="1" />
+          <End Role="tb_ocorrencia" Type="Self.tb_ocorrencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_tipoocorrencia">
+              <PropertyRef Name="codTipoOcorrencia" />
+            </Principal>
+            <Dependent Role="tb_ocorrencia">
+              <PropertyRef Name="codTipoOcorrencia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_ocorrencia_tb_usuario">
+          <End Role="tb_usuario" Type="Self.tb_usuario" Multiplicity="1" />
+          <End Role="tb_ocorrencia" Type="Self.tb_ocorrencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_usuario">
+              <PropertyRef Name="codUsuario" />
+            </Principal>
+            <Dependent Role="tb_ocorrencia">
+              <PropertyRef Name="codUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_servico_tb_usuario">
+          <End Role="tb_usuario" Type="Self.tb_usuario" Multiplicity="1" />
+          <End Role="tb_servico" Type="Self.tb_servico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_usuario">
+              <PropertyRef Name="codUsuario" />
+            </Principal>
+            <Dependent Role="tb_servico">
+              <PropertyRef Name="codUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_subocorrencia_tb_tipoocorrencia">
+          <End Role="tb_tipoocorrencia" Type="Self.tb_tipoocorrencia" Multiplicity="1" />
+          <End Role="tb_subocorrencia" Type="Self.tb_subocorrencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_tipoocorrencia">
+              <PropertyRef Name="codTipoOcorrencia" />
+            </Principal>
+            <Dependent Role="tb_subocorrencia">
+              <PropertyRef Name="codTipoocorrencia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_transacao_tb_cartao">
+          <End Role="tb_cartao" Type="Self.tb_cartao" Multiplicity="1" />
+          <End Role="tb_transacao" Type="Self.tb_transacao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_cartao">
+              <PropertyRef Name="codCartao" />
+            </Principal>
+            <Dependent Role="tb_transacao">
+              <PropertyRef Name="codCartao" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_transacao_tb_servico">
+          <End Role="tb_servico" Type="Self.tb_servico" Multiplicity="1" />
+          <End Role="tb_transacao" Type="Self.tb_transacao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_servico">
+              <PropertyRef Name="codServico" />
+            </Principal>
+            <Dependent Role="tb_transacao">
+              <PropertyRef Name="codServico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_usuario_tb_login">
+          <End Role="tb_login" Type="Self.tb_login" Multiplicity="1" />
+          <End Role="tb_usuario" Type="Self.tb_usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_login">
+              <PropertyRef Name="codLogin" />
+            </Principal>
+            <Dependent Role="tb_usuario">
+              <PropertyRef Name="codLogin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dbSekronModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_anexo" EntityType="Self.tb_anexo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_cartao" EntityType="Self.tb_cartao" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_contato" EntityType="Self.tb_contato" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_emedica" EntityType="Self.tb_emedica" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_login" EntityType="Self.tb_login" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_mativo" EntityType="Self.tb_mativo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_ocorrencia" EntityType="Self.tb_ocorrencia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_redefinirsenha" EntityType="Self.tb_redefinirsenha" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_servico" EntityType="Self.tb_servico" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_subocorrencia" EntityType="Self.tb_subocorrencia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_tipoanexo" EntityType="Self.tb_tipoanexo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_tipoocorrencia" EntityType="Self.tb_tipoocorrencia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_transacao" EntityType="Self.tb_transacao" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_usuario" EntityType="Self.tb_usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tb_anexo_tb_ocorrencia" Association="Self.FK_tb_anexo_tb_ocorrencia">
+            <End Role="tb_ocorrencia" EntitySet="tb_ocorrencia" />
+            <End Role="tb_anexo" EntitySet="tb_anexo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_anexo_tb_tipoanexo" Association="Self.FK_tb_anexo_tb_tipoanexo">
+            <End Role="tb_tipoanexo" EntitySet="tb_tipoanexo" />
+            <End Role="tb_anexo" EntitySet="tb_anexo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_cartao_tb_usuario" Association="Self.FK_tb_cartao_tb_usuario">
+            <End Role="tb_usuario" EntitySet="tb_usuario" />
+            <End Role="tb_cartao" EntitySet="tb_cartao" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_contato_ToTable" Association="Self.FK_tb_contato_ToTable">
+            <End Role="tb_usuario" EntitySet="tb_usuario" />
+            <End Role="tb_contato" EntitySet="tb_contato" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_emedica_tb_usuario" Association="Self.FK_tb_emedica_tb_usuario">
+            <End Role="tb_usuario" EntitySet="tb_usuario" />
+            <End Role="tb_emedica" EntitySet="tb_emedica" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_mativo_tb_usuario" Association="Self.FK_tb_mativo_tb_usuario">
+            <End Role="tb_usuario" EntitySet="tb_usuario" />
+            <End Role="tb_mativo" EntitySet="tb_mativo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_ocorrencia_tb_tipoocorrencia" Association="Self.FK_tb_ocorrencia_tb_tipoocorrencia">
+            <End Role="tb_tipoocorrencia" EntitySet="tb_tipoocorrencia" />
+            <End Role="tb_ocorrencia" EntitySet="tb_ocorrencia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_ocorrencia_tb_usuario" Association="Self.FK_tb_ocorrencia_tb_usuario">
+            <End Role="tb_usuario" EntitySet="tb_usuario" />
+            <End Role="tb_ocorrencia" EntitySet="tb_ocorrencia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_servico_tb_usuario" Association="Self.FK_tb_servico_tb_usuario">
+            <End Role="tb_usuario" EntitySet="tb_usuario" />
+            <End Role="tb_servico" EntitySet="tb_servico" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_subocorrencia_tb_tipoocorrencia" Association="Self.FK_tb_subocorrencia_tb_tipoocorrencia">
+            <End Role="tb_tipoocorrencia" EntitySet="tb_tipoocorrencia" />
+            <End Role="tb_subocorrencia" EntitySet="tb_subocorrencia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_transacao_tb_cartao" Association="Self.FK_tb_transacao_tb_cartao">
+            <End Role="tb_cartao" EntitySet="tb_cartao" />
+            <End Role="tb_transacao" EntitySet="tb_transacao" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_transacao_tb_servico" Association="Self.FK_tb_transacao_tb_servico">
+            <End Role="tb_servico" EntitySet="tb_servico" />
+            <End Role="tb_transacao" EntitySet="tb_transacao" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_usuario_tb_login" Association="Self.FK_tb_usuario_tb_login">
+            <End Role="tb_login" EntitySet="tb_login" />
+            <End Role="tb_usuario" EntitySet="tb_usuario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dbSekronModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tb_login">
+          <Key>
+            <PropertyRef Name="codLogin" />
+          </Key>
+          <Property Name="codLogin" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="senha" Type="String" MaxLength="15" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="token" Type="String" MaxLength="6" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tb_usuario" Relationship="Self.FK_tb_usuario_tb_login" FromRole="tb_login" ToRole="tb_usuario" />
+          <Property Name="serialChip" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tb_usuario">
+          <Key>
+            <PropertyRef Name="codUsuario" />
+          </Key>
+          <Property Name="codUsuario" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="codLogin" Type="Int64" Nullable="false" />
+          <Property Name="nome" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dataNascimento" Type="String" MaxLength="20" Unicode="false" FixedLength="false" Nullable="false" />
+          <Property Name="cpf" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="rg" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="celular" Type="String" MaxLength="14" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="telefone" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="sexo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="cep" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="rua" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="complemento" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="numero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cidade" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estado" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="ativo" Type="Boolean" Nullable="false" />
+          <Property Name="dataCadastro" Type="String" MaxLength="50" Unicode="false" FixedLength="false" Nullable="false" />
+          <NavigationProperty Name="tb_login" Relationship="Self.FK_tb_usuario_tb_login" FromRole="tb_usuario" ToRole="tb_login" />
+          <NavigationProperty Name="tb_contato" Relationship="dbSekronModel.FK_tb_contato_ToTable" FromRole="tb_usuario" ToRole="tb_contato" />
+          <NavigationProperty Name="tb_emedica" Relationship="dbSekronModel.FK_tb_emedica_tb_usuario" FromRole="tb_usuario" ToRole="tb_emedica" />
+          <NavigationProperty Name="tb_cartao" Relationship="dbSekronModel.FK_tb_cartao_tb_usuario" FromRole="tb_usuario" ToRole="tb_cartao" />
+          <NavigationProperty Name="tb_servico" Relationship="dbSekronModel.FK_tb_servico_tb_usuario" FromRole="tb_usuario" ToRole="tb_servico" />
+          <NavigationProperty Name="tb_mativo" Relationship="dbSekronModel.FK_tb_mativo_tb_usuario" FromRole="tb_usuario" ToRole="tb_mativo" />
+          <Property Name="pago" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="tb_ocorrencia" Relationship="dbSekronModel.FK_tb_ocorrencia_tb_usuario" FromRole="tb_usuario" ToRole="tb_ocorrencia" />
+          <Property Name="voluntario" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="fotoPerfil" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="uidFirebase" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="notificacaoAmarela" Type="Boolean" />
+          <Property Name="notificacaoLaranja" Type="Boolean" />
+          <Property Name="notificacaoVermelha" Type="Boolean" />
+          <Property Name="enderecoCasa" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="enderecoTrabalho" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="carroMarca" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="carroModelo" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="carroPlaca" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="carroFoto" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="carroCor" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="cepTrabalho" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="cepCasa" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_tb_usuario_tb_login">
+          <End Role="tb_login" Type="Self.tb_login" Multiplicity="1" />
+          <End Role="tb_usuario" Type="Self.tb_usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_login">
+              <PropertyRef Name="codLogin" />
+            </Principal>
+            <Dependent Role="tb_usuario">
+              <PropertyRef Name="codLogin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dbSekronEntities1" annotation:LazyLoadingEnabled="false">
+          <EntitySet Name="tb_login" EntityType="Self.tb_login" />
+          <EntitySet Name="tb_usuario" EntityType="Self.tb_usuario" />
+          <AssociationSet Name="FK_tb_usuario_tb_login" Association="Self.FK_tb_usuario_tb_login">
+            <End Role="tb_login" EntitySet="tb_login" />
+            <End Role="tb_usuario" EntitySet="tb_usuario" />
+          </AssociationSet>
+          <EntitySet Name="tb_contato" EntityType="dbSekronModel.tb_contato" />
+          <AssociationSet Name="FK_tb_contato_ToTable" Association="dbSekronModel.FK_tb_contato_ToTable">
+            <End Role="tb_usuario" EntitySet="tb_usuario" />
+            <End Role="tb_contato" EntitySet="tb_contato" />
+          </AssociationSet>
+          <EntitySet Name="tb_emedica" EntityType="dbSekronModel.tb_emedica" />
+          <AssociationSet Name="FK_tb_emedica_tb_usuario" Association="dbSekronModel.FK_tb_emedica_tb_usuario">
+            <End Role="tb_usuario" EntitySet="tb_usuario" />
+            <End Role="tb_emedica" EntitySet="tb_emedica" />
+          </AssociationSet>
+          <EntitySet Name="tb_cartao" EntityType="dbSekronModel.tb_cartao" />
+          <EntitySet Name="tb_transacao" EntityType="dbSekronModel.tb_transacao" />
+          <AssociationSet Name="FK_tb_cartao_tb_usuario" Association="dbSekronModel.FK_tb_cartao_tb_usuario">
+            <End Role="tb_usuario" EntitySet="tb_usuario" />
+            <End Role="tb_cartao" EntitySet="tb_cartao" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_transacao_tb_cartao" Association="dbSekronModel.FK_tb_transacao_tb_cartao">
+            <End Role="tb_cartao" EntitySet="tb_cartao" />
+            <End Role="tb_transacao" EntitySet="tb_transacao" />
+          </AssociationSet>
+          <EntitySet Name="tb_servico" EntityType="dbSekronModel.tb_servico" />
+          <AssociationSet Name="FK_tb_servico_tb_usuario" Association="dbSekronModel.FK_tb_servico_tb_usuario">
+            <End Role="tb_usuario" EntitySet="tb_usuario" />
+            <End Role="tb_servico" EntitySet="tb_servico" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_transacao_tb_servico" Association="dbSekronModel.FK_tb_transacao_tb_servico">
+            <End Role="tb_servico" EntitySet="tb_servico" />
+            <End Role="tb_transacao" EntitySet="tb_transacao" />
+          </AssociationSet>
+          <EntitySet Name="tb_mativo" EntityType="dbSekronModel.tb_mativo" />
+          <AssociationSet Name="FK_tb_mativo_tb_usuario" Association="dbSekronModel.FK_tb_mativo_tb_usuario">
+            <End Role="tb_usuario" EntitySet="tb_usuario" />
+            <End Role="tb_mativo" EntitySet="tb_mativo" />
+          </AssociationSet>
+          <EntitySet Name="tb_tipoocorrencia" EntityType="dbSekronModel.tb_tipoocorrencia" />
+          <EntitySet Name="tb_subocorrencia" EntityType="dbSekronModel.tb_subocorrencia" />
+          <AssociationSet Name="FK_tb_subocorrencia_tb_tipoocorrencia" Association="dbSekronModel.FK_tb_subocorrencia_tb_tipoocorrencia">
+            <End Role="tb_tipoocorrencia" EntitySet="tb_tipoocorrencia" />
+            <End Role="tb_subocorrencia" EntitySet="tb_subocorrencia" />
+          </AssociationSet>
+          <EntitySet Name="tb_ocorrencia" EntityType="dbSekronModel.tb_ocorrencia" />
+          <AssociationSet Name="FK_tb_ocorrencia_tb_tipoocorrencia" Association="dbSekronModel.FK_tb_ocorrencia_tb_tipoocorrencia">
+            <End Role="tb_tipoocorrencia" EntitySet="tb_tipoocorrencia" />
+            <End Role="tb_ocorrencia" EntitySet="tb_ocorrencia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_ocorrencia_tb_usuario" Association="dbSekronModel.FK_tb_ocorrencia_tb_usuario">
+            <End Role="tb_usuario" EntitySet="tb_usuario" />
+            <End Role="tb_ocorrencia" EntitySet="tb_ocorrencia" />
+          </AssociationSet>
+          <EntitySet Name="tb_tipoanexo" EntityType="dbSekronModel.tb_tipoanexo" />
+          <EntitySet Name="tb_anexo" EntityType="dbSekronModel.tb_anexo" />
+          <AssociationSet Name="FK_tb_anexo_tb_ocorrencia" Association="dbSekronModel.FK_tb_anexo_tb_ocorrencia">
+            <End Role="tb_ocorrencia" EntitySet="tb_ocorrencia" />
+            <End Role="tb_anexo" EntitySet="tb_anexo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_anexo_tb_tipoanexo" Association="dbSekronModel.FK_tb_anexo_tb_tipoanexo">
+            <End Role="tb_tipoanexo" EntitySet="tb_tipoanexo" />
+            <End Role="tb_anexo" EntitySet="tb_anexo" />
+          </AssociationSet>
+          <EntitySet Name="tb_redefinirsenha" EntityType="dbSekronModel.tb_redefinirsenha" />
+          <EntitySet Name="sysdiagrams" EntityType="dbSekronModel.sysdiagrams" />
+        </EntityContainer>
+        <EntityType Name="tb_contato">
+          <Key>
+            <PropertyRef Name="codContato" />
+          </Key>
+          <Property Name="codContato" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="codUsuario" Type="Int64" Nullable="false" />
+          <Property Name="nome" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tb_usuario" Relationship="dbSekronModel.FK_tb_contato_ToTable" FromRole="tb_contato" ToRole="tb_usuario" />
+          <Property Name="telefone" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_tb_contato_ToTable">
+          <End Type="dbSekronModel.tb_usuario" Role="tb_usuario" Multiplicity="1" />
+          <End Type="dbSekronModel.tb_contato" Role="tb_contato" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_usuario">
+              <PropertyRef Name="codUsuario" />
+            </Principal>
+            <Dependent Role="tb_contato">
+              <PropertyRef Name="codUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tb_emedica">
+          <Key>
+            <PropertyRef Name="codEmedica" />
+          </Key>
+          <Property Name="codEmedica" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="codUsuario" Type="Int64" Nullable="false" />
+          <Property Name="cartaoSus" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="planoSaude" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="numeroPlanoSaude" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="problemaSaude" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="notasMedicas" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="alergiasReacoes" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="medicamentos" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="tipoSanguineo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="peso" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="altura" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tb_usuario" Relationship="dbSekronModel.FK_tb_emedica_tb_usuario" FromRole="tb_emedica" ToRole="tb_usuario" />
+        </EntityType>
+        <Association Name="FK_tb_emedica_tb_usuario">
+          <End Type="dbSekronModel.tb_usuario" Role="tb_usuario" Multiplicity="1" />
+          <End Type="dbSekronModel.tb_emedica" Role="tb_emedica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_usuario">
+              <PropertyRef Name="codUsuario" />
+            </Principal>
+            <Dependent Role="tb_emedica">
+              <PropertyRef Name="codUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tb_cartao">
+          <Key>
+            <PropertyRef Name="codCartao" />
+          </Key>
+          <Property Name="codCartao" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="codUsuario" Type="Int64" Nullable="false" />
+          <Property Name="numeroCartao" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="validade" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
+          <Property Name="codSeguranca" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="bandeira" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tb_usuario" Relationship="dbSekronModel.FK_tb_cartao_tb_usuario" FromRole="tb_cartao" ToRole="tb_usuario" />
+          <NavigationProperty Name="tb_transacao" Relationship="dbSekronModel.FK_tb_transacao_tb_cartao" FromRole="tb_cartao" ToRole="tb_transacao" />
+          <Property Name="cep" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tb_transacao">
+          <Key>
+            <PropertyRef Name="codTransacao" />
+          </Key>
+          <Property Name="codTransacao" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="codCartao" Type="Int64" Nullable="false" />
+          <Property Name="dataTransacao" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="status" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tb_cartao" Relationship="dbSekronModel.FK_tb_transacao_tb_cartao" FromRole="tb_transacao" ToRole="tb_cartao" />
+          <Property Name="codServico" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="tb_servico" Relationship="dbSekronModel.FK_tb_transacao_tb_servico" FromRole="tb_transacao" ToRole="tb_servico" />
+        </EntityType>
+        <Association Name="FK_tb_cartao_tb_usuario">
+          <End Type="dbSekronModel.tb_usuario" Role="tb_usuario" Multiplicity="1" />
+          <End Type="dbSekronModel.tb_cartao" Role="tb_cartao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_usuario">
+              <PropertyRef Name="codUsuario" />
+            </Principal>
+            <Dependent Role="tb_cartao">
+              <PropertyRef Name="codUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_transacao_tb_cartao">
+          <End Type="dbSekronModel.tb_cartao" Role="tb_cartao" Multiplicity="1" />
+          <End Type="dbSekronModel.tb_transacao" Role="tb_transacao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_cartao">
+              <PropertyRef Name="codCartao" />
+            </Principal>
+            <Dependent Role="tb_transacao">
+              <PropertyRef Name="codCartao" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tb_servico">
+          <Key>
+            <PropertyRef Name="codServico" />
+          </Key>
+          <Property Name="codServico" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="codUsuario" Type="Int64" Nullable="false" />
+          <Property Name="nome" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="descricao" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="data" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="dataValidade" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="valor" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tb_usuario" Relationship="dbSekronModel.FK_tb_servico_tb_usuario" FromRole="tb_servico" ToRole="tb_usuario" />
+          <NavigationProperty Name="tb_transacao" Relationship="dbSekronModel.FK_tb_transacao_tb_servico" FromRole="tb_servico" ToRole="tb_transacao" />
+        </EntityType>
+        <Association Name="FK_tb_servico_tb_usuario">
+          <End Type="dbSekronModel.tb_usuario" Role="tb_usuario" Multiplicity="1" />
+          <End Type="dbSekronModel.tb_servico" Role="tb_servico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_usuario">
+              <PropertyRef Name="codUsuario" />
+            </Principal>
+            <Dependent Role="tb_servico">
+              <PropertyRef Name="codUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_transacao_tb_servico">
+          <End Type="dbSekronModel.tb_servico" Role="tb_servico" Multiplicity="1" />
+          <End Type="dbSekronModel.tb_transacao" Role="tb_transacao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_servico">
+              <PropertyRef Name="codServico" />
+            </Principal>
+            <Dependent Role="tb_transacao">
+              <PropertyRef Name="codServico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tb_mativo">
+          <Key>
+            <PropertyRef Name="codContato" />
+          </Key>
+          <Property Name="codContato" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="codUsuario" Type="Int64" Nullable="false" />
+          <Property Name="nome" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="telefone" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tb_usuario" Relationship="dbSekronModel.FK_tb_mativo_tb_usuario" FromRole="tb_mativo" ToRole="tb_usuario" />
+        </EntityType>
+        <Association Name="FK_tb_mativo_tb_usuario">
+          <End Type="dbSekronModel.tb_usuario" Role="tb_usuario" Multiplicity="1" />
+          <End Type="dbSekronModel.tb_mativo" Role="tb_mativo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_usuario">
+              <PropertyRef Name="codUsuario" />
+            </Principal>
+            <Dependent Role="tb_mativo">
+              <PropertyRef Name="codUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tb_tipoocorrencia">
+          <Key>
+            <PropertyRef Name="codTipoOcorrencia" />
+          </Key>
+          <Property Name="descricao" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="codTipoOcorrencia" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="tb_subocorrencia" Relationship="dbSekronModel.FK_tb_subocorrencia_tb_tipoocorrencia" FromRole="tb_tipoocorrencia" ToRole="tb_subocorrencia" />
+          <NavigationProperty Name="tb_ocorrencia" Relationship="dbSekronModel.FK_tb_ocorrencia_tb_tipoocorrencia" FromRole="tb_tipoocorrencia" ToRole="tb_ocorrencia" />
+        </EntityType>
+        <EntityType Name="tb_subocorrencia">
+          <Key>
+            <PropertyRef Name="codSubocorrencia" />
+          </Key>
+          <Property Name="codSubocorrencia" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="codTipoocorrencia" Type="Int64" Nullable="false" />
+          <Property Name="descricao" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tb_tipoocorrencia" Relationship="dbSekronModel.FK_tb_subocorrencia_tb_tipoocorrencia" FromRole="tb_subocorrencia" ToRole="tb_tipoocorrencia" />
+        </EntityType>
+        <Association Name="FK_tb_subocorrencia_tb_tipoocorrencia">
+          <End Type="dbSekronModel.tb_tipoocorrencia" Role="tb_tipoocorrencia" Multiplicity="1" />
+          <End Type="dbSekronModel.tb_subocorrencia" Role="tb_subocorrencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_tipoocorrencia">
+              <PropertyRef Name="codTipoOcorrencia" />
+            </Principal>
+            <Dependent Role="tb_subocorrencia">
+              <PropertyRef Name="codTipoocorrencia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tb_ocorrencia">
+          <Key>
+            <PropertyRef Name="codOcorrencia" />
+          </Key>
+          <Property Name="codOcorrencia" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="codTipoOcorrencia" Type="Int64" Nullable="false" />
+          <Property Name="codUsuario" Type="Int64" Nullable="false" />
+          <Property Name="latitude" Type="Double" Nullable="false" />
+          <Property Name="longitude" Type="Double" Nullable="false" />
+          <Property Name="descricaoOcorrencia" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="data" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="hora" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tb_tipoocorrencia" Relationship="dbSekronModel.FK_tb_ocorrencia_tb_tipoocorrencia" FromRole="tb_ocorrencia" ToRole="tb_tipoocorrencia" />
+          <NavigationProperty Name="tb_usuario" Relationship="dbSekronModel.FK_tb_ocorrencia_tb_usuario" FromRole="tb_ocorrencia" ToRole="tb_usuario" />
+          <NavigationProperty Name="tb_anexo" Relationship="dbSekronModel.FK_tb_anexo_tb_ocorrencia" FromRole="tb_ocorrencia" ToRole="tb_anexo" />
+          <Property Name="enderecoOcorrencia" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="placaVeiculo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_tb_ocorrencia_tb_tipoocorrencia">
+          <End Type="dbSekronModel.tb_tipoocorrencia" Role="tb_tipoocorrencia" Multiplicity="1" />
+          <End Type="dbSekronModel.tb_ocorrencia" Role="tb_ocorrencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_tipoocorrencia">
+              <PropertyRef Name="codTipoOcorrencia" />
+            </Principal>
+            <Dependent Role="tb_ocorrencia">
+              <PropertyRef Name="codTipoOcorrencia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_ocorrencia_tb_usuario">
+          <End Type="dbSekronModel.tb_usuario" Role="tb_usuario" Multiplicity="1" />
+          <End Type="dbSekronModel.tb_ocorrencia" Role="tb_ocorrencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_usuario">
+              <PropertyRef Name="codUsuario" />
+            </Principal>
+            <Dependent Role="tb_ocorrencia">
+              <PropertyRef Name="codUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tb_tipoanexo">
+          <Key>
+            <PropertyRef Name="codTipoAnexo" />
+          </Key>
+          <Property Name="codTipoAnexo" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descricao" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tb_anexo" Relationship="dbSekronModel.FK_tb_anexo_tb_tipoanexo" FromRole="tb_tipoanexo" ToRole="tb_anexo" />
+        </EntityType>
+        <EntityType Name="tb_anexo">
+          <Key>
+            <PropertyRef Name="codAnexo" />
+          </Key>
+          <Property Name="codAnexo" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="codTipoAnexo" Type="Int64" Nullable="false" />
+          <Property Name="codOcorrencia" Type="Int64" Nullable="false" />
+          <Property Name="anexo" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="tipoAnexo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="data" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="hora" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tb_ocorrencia" Relationship="dbSekronModel.FK_tb_anexo_tb_ocorrencia" FromRole="tb_anexo" ToRole="tb_ocorrencia" />
+          <NavigationProperty Name="tb_tipoanexo" Relationship="dbSekronModel.FK_tb_anexo_tb_tipoanexo" FromRole="tb_anexo" ToRole="tb_tipoanexo" />
+        </EntityType>
+        <Association Name="FK_tb_anexo_tb_ocorrencia">
+          <End Type="dbSekronModel.tb_ocorrencia" Role="tb_ocorrencia" Multiplicity="1" />
+          <End Type="dbSekronModel.tb_anexo" Role="tb_anexo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_ocorrencia">
+              <PropertyRef Name="codOcorrencia" />
+            </Principal>
+            <Dependent Role="tb_anexo">
+              <PropertyRef Name="codOcorrencia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_anexo_tb_tipoanexo">
+          <End Type="dbSekronModel.tb_tipoanexo" Role="tb_tipoanexo" Multiplicity="1" />
+          <End Type="dbSekronModel.tb_anexo" Role="tb_anexo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_tipoanexo">
+              <PropertyRef Name="codTipoAnexo" />
+            </Principal>
+            <Dependent Role="tb_anexo">
+              <PropertyRef Name="codTipoAnexo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tb_redefinirsenha">
+          <Key>
+            <PropertyRef Name="codRedefinir" />
+          </Key>
+          <Property Name="codRedefinir" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="senhaProvisoria" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="dbSekronModelStoreContainer" CdmEntityContainer="dbSekronEntities1">
+          <EntitySetMapping Name="tb_login">
+            <EntityTypeMapping TypeName="dbSekronModel.tb_login">
+              <MappingFragment StoreEntitySet="tb_login">
+                <ScalarProperty Name="serialChip" ColumnName="serialChip" />
+                <ScalarProperty Name="codLogin" ColumnName="codLogin" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="senha" ColumnName="senha" />
+                <ScalarProperty Name="token" ColumnName="token" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_usuario">
+            <EntityTypeMapping TypeName="dbSekronModel.tb_usuario">
+              <MappingFragment StoreEntitySet="tb_usuario">
+                <ScalarProperty Name="cepCasa" ColumnName="cepCasa" />
+                <ScalarProperty Name="cepTrabalho" ColumnName="cepTrabalho" />
+                <ScalarProperty Name="carroCor" ColumnName="carroCor" />
+                <ScalarProperty Name="carroFoto" ColumnName="carroFoto" />
+                <ScalarProperty Name="carroPlaca" ColumnName="carroPlaca" />
+                <ScalarProperty Name="carroModelo" ColumnName="carroModelo" />
+                <ScalarProperty Name="carroMarca" ColumnName="carroMarca" />
+                <ScalarProperty Name="enderecoTrabalho" ColumnName="enderecoTrabalho" />
+                <ScalarProperty Name="enderecoCasa" ColumnName="enderecoCasa" />
+                <ScalarProperty Name="notificacaoVermelha" ColumnName="notificacaoVermelha" />
+                <ScalarProperty Name="notificacaoLaranja" ColumnName="notificacaoLaranja" />
+                <ScalarProperty Name="notificacaoAmarela" ColumnName="notificacaoAmarela" />
+                <ScalarProperty Name="uidFirebase" ColumnName="uidFirebase" />
+                <ScalarProperty Name="fotoPerfil" ColumnName="fotoPerfil" />
+                <ScalarProperty Name="voluntario" ColumnName="voluntario" />
+                <ScalarProperty Name="pago" ColumnName="pago" />
+                <ScalarProperty Name="dataCadastro" ColumnName="dataCadastro" />
+                <ScalarProperty Name="dataNascimento" ColumnName="dataNascimento" />
+                <ScalarProperty Name="codUsuario" ColumnName="codUsuario" />
+                <ScalarProperty Name="codLogin" ColumnName="codLogin" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="cpf" ColumnName="cpf" />
+                <ScalarProperty Name="rg" ColumnName="rg" />
+                <ScalarProperty Name="celular" ColumnName="celular" />
+                <ScalarProperty Name="telefone" ColumnName="telefone" />
+                <ScalarProperty Name="sexo" ColumnName="sexo" />
+                <ScalarProperty Name="cep" ColumnName="cep" />
+                <ScalarProperty Name="rua" ColumnName="rua" />
+                <ScalarProperty Name="complemento" ColumnName="complemento" />
+                <ScalarProperty Name="numero" ColumnName="numero" />
+                <ScalarProperty Name="cidade" ColumnName="cidade" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="ativo" ColumnName="ativo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_contato">
+            <EntityTypeMapping TypeName="dbSekronModel.tb_contato">
+              <MappingFragment StoreEntitySet="tb_contato">
+                <ScalarProperty Name="telefone" ColumnName="telefone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="codUsuario" ColumnName="codUsuario" />
+                <ScalarProperty Name="codContato" ColumnName="codContato" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_emedica">
+            <EntityTypeMapping TypeName="dbSekronModel.tb_emedica">
+              <MappingFragment StoreEntitySet="tb_emedica">
+                <ScalarProperty Name="altura" ColumnName="altura" />
+                <ScalarProperty Name="peso" ColumnName="peso" />
+                <ScalarProperty Name="tipoSanguineo" ColumnName="tipoSanguineo" />
+                <ScalarProperty Name="medicamentos" ColumnName="medicamentos" />
+                <ScalarProperty Name="alergiasReacoes" ColumnName="alergiasReacoes" />
+                <ScalarProperty Name="notasMedicas" ColumnName="notasMedicas" />
+                <ScalarProperty Name="problemaSaude" ColumnName="problemaSaude" />
+                <ScalarProperty Name="numeroPlanoSaude" ColumnName="numeroPlanoSaude" />
+                <ScalarProperty Name="planoSaude" ColumnName="planoSaude" />
+                <ScalarProperty Name="cartaoSus" ColumnName="cartaoSus" />
+                <ScalarProperty Name="codUsuario" ColumnName="codUsuario" />
+                <ScalarProperty Name="codEmedica" ColumnName="codEmedica" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_cartao">
+            <EntityTypeMapping TypeName="dbSekronModel.tb_cartao">
+              <MappingFragment StoreEntitySet="tb_cartao">
+                <ScalarProperty Name="cep" ColumnName="cep" />
+                <ScalarProperty Name="bandeira" ColumnName="bandeira" />
+                <ScalarProperty Name="codSeguranca" ColumnName="codSeguranca" />
+                <ScalarProperty Name="validade" ColumnName="validade" />
+                <ScalarProperty Name="numeroCartao" ColumnName="numeroCartao" />
+                <ScalarProperty Name="codUsuario" ColumnName="codUsuario" />
+                <ScalarProperty Name="codCartao" ColumnName="codCartao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_transacao">
+            <EntityTypeMapping TypeName="dbSekronModel.tb_transacao">
+              <MappingFragment StoreEntitySet="tb_transacao">
+                <ScalarProperty Name="dataTransacao" ColumnName="dataTransacao" />
+                <ScalarProperty Name="codServico" ColumnName="codServico" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="codCartao" ColumnName="codCartao" />
+                <ScalarProperty Name="codTransacao" ColumnName="codTransacao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_servico">
+            <EntityTypeMapping TypeName="dbSekronModel.tb_servico">
+              <MappingFragment StoreEntitySet="tb_servico">
+                <ScalarProperty Name="dataValidade" ColumnName="dataValidade" />
+                <ScalarProperty Name="data" ColumnName="data" />
+                <ScalarProperty Name="valor" ColumnName="valor" />
+                <ScalarProperty Name="descricao" ColumnName="descricao" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="codUsuario" ColumnName="codUsuario" />
+                <ScalarProperty Name="codServico" ColumnName="codServico" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_mativo">
+            <EntityTypeMapping TypeName="dbSekronModel.tb_mativo">
+              <MappingFragment StoreEntitySet="tb_mativo">
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="telefone" ColumnName="telefone" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="codUsuario" ColumnName="codUsuario" />
+                <ScalarProperty Name="codContato" ColumnName="codContato" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_tipoocorrencia">
+            <EntityTypeMapping TypeName="dbSekronModel.tb_tipoocorrencia">
+              <MappingFragment StoreEntitySet="tb_tipoocorrencia">
+                <ScalarProperty Name="codTipoOcorrencia" ColumnName="codTipoOcorrencia" />
+                <ScalarProperty Name="descricao" ColumnName="descricao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_subocorrencia">
+            <EntityTypeMapping TypeName="dbSekronModel.tb_subocorrencia">
+              <MappingFragment StoreEntitySet="tb_subocorrencia">
+                <ScalarProperty Name="descricao" ColumnName="descricao" />
+                <ScalarProperty Name="codTipoocorrencia" ColumnName="codTipoocorrencia" />
+                <ScalarProperty Name="codSubocorrencia" ColumnName="codSubocorrencia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_ocorrencia">
+            <EntityTypeMapping TypeName="dbSekronModel.tb_ocorrencia">
+              <MappingFragment StoreEntitySet="tb_ocorrencia">
+                <ScalarProperty Name="placaVeiculo" ColumnName="placaVeiculo" />
+                <ScalarProperty Name="enderecoOcorrencia" ColumnName="enderecoOcorrencia" />
+                <ScalarProperty Name="hora" ColumnName="hora" />
+                <ScalarProperty Name="data" ColumnName="data" />
+                <ScalarProperty Name="descricaoOcorrencia" ColumnName="descricaoOcorrencia" />
+                <ScalarProperty Name="longitude" ColumnName="longitude" />
+                <ScalarProperty Name="latitude" ColumnName="latitude" />
+                <ScalarProperty Name="codUsuario" ColumnName="codUsuario" />
+                <ScalarProperty Name="codTipoOcorrencia" ColumnName="codTipoOcorrencia" />
+                <ScalarProperty Name="codOcorrencia" ColumnName="codOcorrencia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_tipoanexo">
+            <EntityTypeMapping TypeName="dbSekronModel.tb_tipoanexo">
+              <MappingFragment StoreEntitySet="tb_tipoanexo">
+                <ScalarProperty Name="descricao" ColumnName="descricao" />
+                <ScalarProperty Name="codTipoAnexo" ColumnName="codTipoAnexo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_anexo">
+            <EntityTypeMapping TypeName="dbSekronModel.tb_anexo">
+              <MappingFragment StoreEntitySet="tb_anexo">
+                <ScalarProperty Name="anexo" ColumnName="anexo" />
+                <ScalarProperty Name="hora" ColumnName="hora" />
+                <ScalarProperty Name="data" ColumnName="data" />
+                <ScalarProperty Name="tipoAnexo" ColumnName="tipoAnexo" />
+                <ScalarProperty Name="codOcorrencia" ColumnName="codOcorrencia" />
+                <ScalarProperty Name="codTipoAnexo" ColumnName="codTipoAnexo" />
+                <ScalarProperty Name="codAnexo" ColumnName="codAnexo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_redefinirsenha">
+            <EntityTypeMapping TypeName="dbSekronModel.tb_redefinirsenha">
+              <MappingFragment StoreEntitySet="tb_redefinirsenha">
+                <ScalarProperty Name="senhaProvisoria" ColumnName="senhaProvisoria" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="codRedefinir" ColumnName="codRedefinir" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="dbSekronModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

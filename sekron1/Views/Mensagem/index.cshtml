@@ -1,0 +1,47 @@
+﻿@model sekron1.Controllers.MensagemModel
+
+@{
+    ViewBag.Title = "Notificação";
+}
+
+<h2>Notificação</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.Label("Titulo")
+    <br />
+    @Html.TextBoxFor(m => m.contentTitle);
+    <br />
+    <br />
+    @Html.Label("Titulo barra de notificação")
+    <br />
+    @Html.TextBoxFor(m => m.tickerText);
+    <br />
+    <br />
+    @Html.Label("Texto mensagem")
+    <br />
+    @Html.TextAreaFor(m => m.message);
+    <br />
+    <br />
+    @Html.Label("Selecione o tipo de notificação")
+    <br />
+    <br />
+
+    @Html.DropDownListFor(x => x.tipoMensagem, new List<SelectListItem>
+    {
+                        new SelectListItem() {Text = "Selecione", Value="Selecione"},
+                        new SelectListItem() {Text = "Todos os usuários", Value = "Todos" },
+                        new SelectListItem() {Text = "Notificação Amarela", Value="Amarela"},
+                        new SelectListItem() {Text = "Notificação Laranja", Value="Laranja"},
+                        new SelectListItem() {Text = "Notificação Vermelha", Value="Vermelha"}
+    })
+    <br />
+    <br />
+    <input type = "submit" />
+}
+
+@if (ViewBag.Error != null)
+{
+    <h4 style="color:red">@ViewBag.Error</h4>
+}
+
